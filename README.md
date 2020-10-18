@@ -12,9 +12,26 @@ I have included a dummy .env file witch you can adjust to your needs.
 
 ### Important:
 Before starting the cilent side you must create a Booking Times array witch will be used later by tht client.
-Booking Times arrry needs to be created only once.
+Booking Times array needs to be created only once.
 You can do that by sending a PUT request to    
 
-http://<YOUR_INSTANCE_OF_THE_SERVER>/api/bookings/setbookingtimes
+http://<YOUR_LOCAL_INSTANCE>/api/bookings/setbookingtimes
 
 it's best to use postman to send that request.
+
+## Admin user
+------
+To create an admin user send a POST request to 
+
+http://<YOUR_LOCAL_INSTANCE>/api/signup
+
+with a JSON body that follows the pattern bellow
+
+{
+	"name":"YOUR_NAME",
+	"email":"example@email.com",
+	"password": "YOUR_PASSWORD"
+}
+
+After the user is successfully created and saved to your database it will have a role property with value of 0  
+in order to give that user admin privileges you need to manually change that value to 1.
