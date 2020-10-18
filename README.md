@@ -7,7 +7,7 @@ This project is using Mongoose.js for MongoDB database connection and all the ne
 Every object saved in the database is a mongoose schema with a unique set of properties.
 
 To run the server localy you need to have MongoDB installed and running on your machine.
-Alternatively you can connect to any active MongoDB cluster.
+Alternatively you can connect to any online MongoDB cluster.
 
 I have included a dummy .env file witch you can adjust to your needs.
 It contains ``` STRIPE_SECRET_KEY ``` and ``` SMS_TOKEN ``` with are needed do connect to according third party services.
