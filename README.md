@@ -8,10 +8,13 @@ Every object saved in the database is a mongoose schema with a unique set of pro
 
 To run the server localy you need to have MongoDB installed and running on your machine.
 Alternatively you can connect to any active MongoDB cluster.
+
 I have included a dummy .env file witch you can adjust to your needs.
+It contains ``` STRIPE_SECRET_KEY ``` and ``` SMS_TOKEN ``` with are needed do connect to thirs party services.
+In this case is Stripe and TheSMSWorks if you want to get the full functionality of this app you have register to these or similar services. 
 
 ### Instalation:
-Run ``` npm install ``` command from projects root folder to install all the neccessary dependencies.
+Run ``` npm install ``` command from projects root directory to install all the neccessary dependencies.
 
 ### Important:
 Before starting the cilent side you must create a Booking Times array witch will be used later by tht client.
