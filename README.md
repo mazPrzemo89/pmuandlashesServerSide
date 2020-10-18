@@ -19,7 +19,7 @@ Run ``` npm install ``` command from projects root directory to install all the 
 ### Important:
 Before starting the cilent side you must create a Booking Times array witch will be used later by tht client.
 Booking Times array needs to be created only once and it doesn't need any adjustments after it's creation.
-You can do that by sending a PUT request to ``` http://<YOUR_LOCAL_INSTANCE>/api/bookings/setbookingtimes ``` ,
+To do that send a PUT request to ``` http://<YOUR_LOCAL_INSTANCE>/api/bookings/setbookingtimes ``` ,
 preferably use postman to send that request.
 
 ## Admin user
