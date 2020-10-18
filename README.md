@@ -2,7 +2,7 @@
 An ExpressJS server responsible for routing and CRUD operations.
 
 ## Database 
-------
+
 This project is using Mongoose.js for MongoDB database connection and all the necessary  data manipulation.
 Every object saved in the database is a mongoose schema with a unique set of properties.
 
@@ -23,7 +23,7 @@ To do that send a PUT request to ``` http://<YOUR_LOCAL_INSTANCE>/api/bookings/s
 preferably use postman.
 
 ## Admin user
-------
+
 To create an admin user send a POST request to 
 
 http://<YOUR_LOCAL_INSTANCE>/api/signup
