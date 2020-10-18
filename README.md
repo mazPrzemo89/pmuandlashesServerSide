@@ -10,6 +10,9 @@ To run the server localy you need to have MongoDB installed and running on your 
 Alternatively you can connect to any active MongoDB cluster.
 I have included a dummy .env file witch you can adjust to your needs.
 
+### Instalation:
+Run ``` npm install ``` command from projects root folder to install all the neccessary dependencies.
+
 ### Important:
 Before starting the cilent side you must create a Booking Times array witch will be used later by tht client.
 Booking Times array needs to be created only once.
