@@ -17,7 +17,7 @@ In this case is Stripe and TheSMSWorks if you want to get the full functionality
 Run ``` npm install ``` command from projects root directory to install all the neccessary dependencies.
 
 ### Important:
-Before starting the cilent side you must create a Booking Times array witch will be used later by tht client.
+Before starting the cilent side you must create a Booking Times array which will be used later by the client.
 Booking Times array needs to be created only once and it doesn't need any adjustments after it's creation.
 To do that send a PUT request to ``` http://<YOUR_LOCAL_INSTANCE>/api/bookings/setbookingtimes ``` ,
 preferably use postman.
