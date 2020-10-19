@@ -44,7 +44,7 @@ preferably use postman.
 # Deployment
 
 After your production build is sitting in the servers root directory you gonna have to adjust the app.js file a little bit.
-First remove  ``` api ``` form every app.use call in the file 
+First remove  ``` api ``` form every app.use call in the file.
 
 
 ``` app.use('/api', authRoutes) ``` ->  ``` app.use('/', authRoutes)  ```
@@ -60,6 +60,6 @@ app.get('/*', (req, res) => {
 Now you can run the app from any previously configured VPS
 preferably use Nginx but Apache will do as well if you know your way around it.
 
-Run the app using tmux or 2pm.js to run the proccess in the backround.
+Run the app using tmux or 2pm.js to run the proccess in the background.
 
 Hope you enjoyed the read and have a nice day ;)
