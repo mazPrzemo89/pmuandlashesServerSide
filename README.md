@@ -62,4 +62,5 @@ preferably use Nginx but Apache will do as well if you know your way around it.
 
 Run the app using tmux or 2pm.js to run the proccess in the background.
 
-Hope you enjoyed the read and have a nice day ;)
+# Features to implement
+Adjusting Client side to not require hard coded bookings array.
