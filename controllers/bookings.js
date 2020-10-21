@@ -23,7 +23,7 @@ exports.update = (req, res) => {
                 error: errorHandler(err)
             })
         }
-        console.log(data)
+
         return res.json(data)
     })
 }
@@ -32,12 +32,15 @@ exports.update = (req, res) => {
 
 exports.list = (req, res) => {
     if (req.body.bookings.length === 0) {
-        return
+        return res.status(404).json({ "message": "Please set a timesheet" })
     }
     let expiryDate = new Date(new Date().valueOf() + 3600000 * 24 * 99)
 
-    Bookings.find({ name: req.body.name }).exec((err, data) => {
+    let startingTimeFromRequest = req.body.bookings[0].time
+    let endTimeFromRequest = req.body.bookings[req.body.bookings.length - 1].time
 
+
+    Bookings.find({ name: req.body.name }).exec((err, data) => {
         if (err) {
             return res.status(400).json({
                 error: errorHandler(err)
@@ -48,7 +51,7 @@ exports.list = (req, res) => {
 
             const booking = new Bookings(req.body)
             booking.expireAt = expiryDate
-            console.log(booking)
+
             booking.save((err, data) => {
                 if (err) {
                     return res.status(400).json({
@@ -59,25 +62,17 @@ exports.list = (req, res) => {
                 return res.json(data)
             })
         } else if (data.length > 0) {
+            // Checking if starting and finishing time for a given day if different
+
+            let bookingTimesCheck = (
+                (data[0].bookings[0].time === startingTimeFromRequest)
+                &&
+                (data[0].bookings[data[0].bookings.length - 1].time) === (endTimeFromRequest)
+            )
 
 
-            let arr1 = []
-            let arr2 = []
 
-            for (let i = 0; i < req.body.bookings.length; i++) {
-                if (req.body.bookings[i][0].hasOwnProperty('position')) {
-                    arr1.push(req.body.bookings[i][0].position)
-                }
-            }
-            for (let i = 0; i < data[0].bookings.length; i++) {
-                if (data[0].bookings[i][0].hasOwnProperty('position')) {
-                    arr2.push(data[0].bookings[i][0].position)
-                }
-            }
-            let string1 = new String(JSON.stringify(arr1))
-            let string2 = new String(JSON.stringify(arr2))
-
-            if (string1.trim() === string2.trim()) {
+            if (bookingTimesCheck) {
                 if (err) {
                     return res.status(400).json({
                         error: errorHandler(err)
