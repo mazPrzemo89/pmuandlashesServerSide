@@ -1,23 +1,17 @@
 const BookingTimes = require('../models/bookingTimes')
 const { errorHandler } = require('../helpers/dbErrorHandler')
-const times = require('../helpers/bookingTimes')
 
-const bookingTimes = {
-    name: 'workingTimesDefault',
-    bookings: times,
-    day: 'all'
-}
 
 exports.createDefault = (req, res) => {
-    let data = new BookingTimes(bookingTimes)
-    data.save((err, data) => {
-        if (err) {
-            return res.status(400).json({
-                error: errorHandler(err)
-            })
-        }
-        return res.json(data)
-    })
+    // let data = new BookingTimes(bookingTimes)
+    // data.save((err, data) => {
+    //     if (err) {
+    //         return res.status(400).json({
+    //             error: errorHandler(err)
+    //         })
+    //     }
+    //     return res.json(data)
+    // })
 }
 
 exports.readDefault = (req, res) => {
@@ -41,29 +35,6 @@ exports.readDefault = (req, res) => {
 exports.createCustom = (req, res) => {
     console.log('CREATE CUSTOM')
     let update = { name: "workingTimes", bookings: req.body.bookings, day: req.body.day }
-    const separtator = { time: '--', type: '', isNotBooked: false, break: false, origin: true }
-
-    const array = new Array()
-
-    update.bookings.forEach((element, index, arr) => {
-
-        array.push(element)
-        if (arr[index].hasOwnProperty('position') && arr[index + 1].hasOwnProperty('position') &&
-            (arr[index + 1].position - arr[index].position > 1)
-        ) {
-            array.push(arr[index])
-            if (array[array.indexOf(arr[index])] === array[array.indexOf(arr[index]) + 1]) (
-                array.splice(array.indexOf(arr[index]), 1)
-            )
-            for (let k = 0; k < arr[index + 1].position - arr[index].position - 1; k++) {
-                console.log(index)
-                array.splice(index + 1, 0, separtator)
-            }
-        }
-    });
-
-
-    update.bookings = array
 
     BookingTimes.findOneAndUpdate(
         { "day": req.body.day },
