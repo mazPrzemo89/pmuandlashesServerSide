@@ -39,8 +39,6 @@ exports.list = (req, res) => {
     let update = { name: req.body.name, bookings: req.body.bookings, touched: false }
     let startingTimeFromRequest = req.body.bookings[0].time
     let endTimeFromRequest = req.body.bookings[req.body.bookings.length - 1].time
-    console.log('REQUESTS BODY')
-    console.log(req.body)
 
     Bookings.find({ name: req.body.name }).exec((err, data) => {
         if (err) {
@@ -60,7 +58,7 @@ exports.list = (req, res) => {
                         error: errorHandler(err)
                     })
                 }
-                console.log('new one created')
+
                 return res.json(data)
             })
         } else if (data.length > 0) {
@@ -73,12 +71,6 @@ exports.list = (req, res) => {
                 &&
                 (data[0].bookings[data[0].bookings.length - 1].time) === (endTimeFromRequest)
             )
-
-            console.log('Old starting time', data[0].bookings[0].time)
-            console.log('New starting time', startingTimeFromRequest)
-            console.log('Old end time', data[0].bookings[data[0].bookings.length - 1].time)
-            console.log('New end time', endTimeFromRequest)
-            console.log(bookingTimesCheck)
 
             if (bookingTimesCheck) {
                 if (err) {
@@ -104,7 +96,7 @@ exports.list = (req, res) => {
                             error: errorHandler(err)
                         })
                     }
-                    console.log('New one returned')
+
 
                     return res.status(201).json(req.body)
                 })
