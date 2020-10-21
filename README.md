@@ -55,6 +55,3 @@ Now you can run the app from any previously configured VPS
 preferably use Nginx but Apache will do as well if you know your way around it.
 
 Run the app using tmux or 2pm.js to run the proccess in the background.
-
-# Features to implement
-Adjusting Client side to not require hard coded bookings array.
