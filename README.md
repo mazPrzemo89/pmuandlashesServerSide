@@ -35,12 +35,6 @@ After the user is successfully created and saved to your database it will have a
 in order to give that user admin privileges you need to manually change that value to 1.
 
 
-### Important:
-Before starting the cilent side you must create a Booking Times array which will be used later by the client.
-Booking Times array needs to be created only once and it doesn't need any adjustments after it's creation.
-To do that send a PUT request to ``` http://<YOUR_LOCAL_INSTANCE>/api/bookings/setbookingtimes ``` ,
-preferably use postman.
-
 # Deployment
 
 After your production build is sitting in the servers root directory you gonna have to adjust the app.js file a little bit.
