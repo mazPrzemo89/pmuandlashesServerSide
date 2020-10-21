@@ -2,18 +2,6 @@ const BookingTimes = require('../models/bookingTimes')
 const { errorHandler } = require('../helpers/dbErrorHandler')
 
 
-exports.createDefault = (req, res) => {
-    // let data = new BookingTimes(bookingTimes)
-    // data.save((err, data) => {
-    //     if (err) {
-    //         return res.status(400).json({
-    //             error: errorHandler(err)
-    //         })
-    //     }
-    //     return res.json(data)
-    // })
-}
-
 exports.readDefault = (req, res) => {
     BookingTimes.find({ "name": "workingTimesDefault" }).exec((err, data) => {
         console.log(data)
