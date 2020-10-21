@@ -31,14 +31,16 @@ exports.update = (req, res) => {
 
 
 exports.list = (req, res) => {
+
     if (req.body.bookings.length === 0) {
         return res.status(404).json({ "message": "Please set a timesheet" })
     }
     let expiryDate = new Date(new Date().valueOf() + 3600000 * 24 * 99)
-
+    let update = { name: req.body.name, bookings: req.body.bookings, touched: false }
     let startingTimeFromRequest = req.body.bookings[0].time
     let endTimeFromRequest = req.body.bookings[req.body.bookings.length - 1].time
-
+    console.log('REQUESTS BODY')
+    console.log(req.body)
 
     Bookings.find({ name: req.body.name }).exec((err, data) => {
         if (err) {
@@ -58,11 +60,13 @@ exports.list = (req, res) => {
                         error: errorHandler(err)
                     })
                 }
-
+                console.log('new one created')
                 return res.json(data)
             })
         } else if (data.length > 0) {
             // Checking if starting and finishing time for a given day if different
+
+
 
             let bookingTimesCheck = (
                 (data[0].bookings[0].time === startingTimeFromRequest)
@@ -70,7 +74,11 @@ exports.list = (req, res) => {
                 (data[0].bookings[data[0].bookings.length - 1].time) === (endTimeFromRequest)
             )
 
-
+            console.log('Old starting time', data[0].bookings[0].time)
+            console.log('New starting time', startingTimeFromRequest)
+            console.log('Old end time', data[0].bookings[data[0].bookings.length - 1].time)
+            console.log('New end time', endTimeFromRequest)
+            console.log(bookingTimesCheck)
 
             if (bookingTimesCheck) {
                 if (err) {
@@ -78,14 +86,15 @@ exports.list = (req, res) => {
                         error: errorHandler(err)
                     })
                 }
+
                 return res.json(data[0])
             } else {
-                let update = { name: req.body.name, bookings: req.body.bookings, touched: false }
+
+
                 Bookings.findOneAndUpdate(
                     { name: req.body.name },
                     update,
                     {
-                        new: true,
                         upsert: true,
                         useFindAndModify: false
                     }
@@ -95,7 +104,9 @@ exports.list = (req, res) => {
                             error: errorHandler(err)
                         })
                     }
-                    return res.json(data2)
+                    console.log('New one returned')
+
+                    return res.status(201).json(req.body)
                 })
             }
         }

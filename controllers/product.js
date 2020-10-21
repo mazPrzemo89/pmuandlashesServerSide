@@ -63,6 +63,7 @@ exports.updateProduct = (req, res) => {
                         error: 'Product not found'
                     })
                 }
+                console.log(product)
                 return res.status(200).json({})
             })
 

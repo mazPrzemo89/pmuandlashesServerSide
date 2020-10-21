@@ -6,8 +6,8 @@ const { requireSignin, isAuth, isAdmin } = require('../controllers/auth')
 
 const { createDefault, readDefault, createCustom, readCustom, list, remove } = require('../controllers/bookingTimes')
 
-//Run the first route to initialize working times
-router.get('/bookings/getbookingtimes', readDefault)
+
+//router.get('/bookings/getbookingtimes', readDefault)
 router.put('/bookings/setcustombookingtimes/:userId', requireSignin, isAuth, isAdmin, createCustom)
 router.get('/bookings/getcustombookingtimes', readCustom)
 router.get('/bookings/all', list)

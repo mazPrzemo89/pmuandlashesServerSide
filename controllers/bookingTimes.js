@@ -2,23 +2,23 @@ const BookingTimes = require('../models/bookingTimes')
 const { errorHandler } = require('../helpers/dbErrorHandler')
 
 
-exports.readDefault = (req, res) => {
-    BookingTimes.find({ "name": "workingTimesDefault" }).exec((err, data) => {
-        console.log(data)
-        if (err) {
-            return res.status(400).json({
-                error: errorHandler(err)
-            })
-        } else {
-            if (data.length > 0) {
-                return res.json(data[0].bookings)
-            } else {
-                res.status(200).json({ "error": true })
-            }
+// exports.readDefault = (req, res) => {
+//     BookingTimes.find({ "name": "workingTimesDefault" }).exec((err, data) => {
+//         console.log(data)
+//         if (err) {
+//             return res.status(400).json({
+//                 error: errorHandler(err)
+//             })
+//         } else {
+//             if (data.length > 0) {
+//                 return res.json(data[0].bookings)
+//             } else {
+//                 res.status(200).json({ "error": true })
+//             }
 
-        }
-    })
-}
+//         }
+//     })
+// }
 
 exports.createCustom = (req, res) => {
     console.log('CREATE CUSTOM')
