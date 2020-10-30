@@ -92,6 +92,7 @@ exports.remove = (req, res) => {
 }
 
 exports.getCategory = (req, res) => {
+    console.log(req.body)
     Category.findById(req.body.id).exec((err, category) => {
         if (err || !category) {
             return res.status(400).json({

@@ -4,10 +4,10 @@ const fs = require('fs')
 const btoa = require('btoa')
 const Product = require('../models/product')
 const { errorHandler } = require('../helpers/dbErrorHandler')
-const product = require('../models/product')
 
 
 exports.findById = (req, res) => {
+    console.log(req.body)
     Product.findOne({ "_id": req.body.id }).exec((err, product) => {
         if (err) {
             return res.status(400).json({
@@ -188,7 +188,8 @@ exports.list = (req, res) => {
             products.forEach(product => {
                 productList.push({
                     name: product.name,
-                    duration: product.duration
+                    duration: product.duration,
+                    _id: product._id
                 })
             })
             res.json(productList)
