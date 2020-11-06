@@ -27,31 +27,31 @@ const userSchema = new mongoose.Schema({
     salt: String,
     role: {
         type: Number,
-        default: 0
+        default: 1
     },
     history: {
         type: Array,
         default: []
     }
-}, {timestamps: true})
+}, { timestamps: true })
 
 userSchema.virtual('password')
-.set(function(password) {
-    this._password = password
-    this.salt = uuidv1()
-    this.hashed_password = this.encryptPassword(password)
-})
-.get(function(){
-    return this._password
-})
+    .set(function (password) {
+        this._password = password
+        this.salt = uuidv1()
+        this.hashed_password = this.encryptPassword(password)
+    })
+    .get(function () {
+        return this._password
+    })
 
 userSchema.methods = {
-    authenticate: function(plainText) {
+    authenticate: function (plainText) {
         return this.encryptPassword(plainText) === this.hashed_password
     },
 
-    encryptPassword: function(password) {
-        if(!password) return '';
+    encryptPassword: function (password) {
+        if (!password) return '';
         try {
             return crypto.createHmac('sha1', this.salt)
                 .update(password)
