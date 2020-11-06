@@ -17,24 +17,6 @@ In this case is Stripe and TheSMSWorks if you want to get the full functionality
 Run ``` npm install ``` command from projects root directory to install all the neccessary dependencies.
 
 
-## Admin user
-
-To create an admin user send a POST request to 
-
-http://<YOUR_LOCAL_INSTANCE>/api/signup
-
-with a JSON body that follows the pattern bellow
-```
-{
-	"name":"YOUR_NAME",
-	"email":"example@email.com",
-	"password": "YOUR_PASSWORD"
-}
-```
-After the user is successfully created and saved to your database it will have a role property with value of 0  
-in order to give that user admin privileges you need to manually change that value to 1.
-
-
 # Deployment
 
 After your production build is sitting in the servers root directory you gonna have to adjust the app.js file a little bit.
